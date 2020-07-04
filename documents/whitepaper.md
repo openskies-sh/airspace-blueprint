@@ -9,10 +9,11 @@
   - [Goals](#goals)
   - [Scenarios](#scenarios)
     - [Extrapolating real world scenarios from TCL demos](#extrapolating-real-world-scenarios-from-tcl-demos)
-  - [Flight projections and network load](#flight-projections-and-network-load)
-    - [Broadcast Remote ID](#broadcast-remote-id)
-    - [Broadcast Remote ID bandwidth](#broadcast-remote-id-bandwidth)
+    - [Broadcast Remote ID projections for the airspace](#broadcast-remote-id-projections-for-the-airspace)
+    - [Flights and Broadcast Remote ID Bandwidth](#flights-and-broadcast-remote-id-bandwidth)
     - [WiFi Aware range](#wifi-aware-range)
+    - [Network Remote ID projections](#network-remote-id-projections)
+  - [Yearly flight projections](#yearly-flight-projections)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
 
@@ -49,10 +50,9 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 | Metro Area Map | <img src="https://i.imgur.com/i8Cpz0C.png" height="400"> | <img src="https://i.imgur.com/vU9Ex7J.jpg" height="400"> |
 | Metro Area size | Reno City has a population of 250,998 and a area of __274.2__ km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)). | Corpus Christi Metro Area has a population of 326,554 and a area of __1,304__ km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas))|
 | Urgent delivery flights in Metro Area | For the entire Reno, NV area, we get the following: 5% of the people are interested in urgent delivery (12,550 people in the city), they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth). This means that every week there will be potentially <br><br>**50,200 flights per week**  | For Corpus Christi, TX area, we get the following: 5% of the people are interested in urgent delivery (16328 people in the city), they order urgent delivery twice a week (16328 x 2 packages x 2 days) = 65310 flights (back and forth). This means that every week there will be potentially <br><br>**65,310 flights per week**  |
-| Hourly flights (assuming 40 hours to fly / week) | 50,200 flights and 40 hours to fly <br><br> **1255 flights / hour**  |  65,310 flights and 40 hours to fly <br><br> **1633 flights / hour**| 
- 
- 
-### Broadcast Remote ID for the airspace
+| Hourly flights (assuming 40 hours to fly / week) | 50,200 flights and 40 hours to fly <br><br> **1255 flights / hour**  |  65,310 flights and 40 hours to fly <br><br> **1633 flights / hour**|
+
+### Broadcast Remote ID projections for the airspace
 In this section, we develop projections of broadcast Remote ID messages, the ASTM spec says that the UAS can use either Wifi or Bluetooth 4.0 or Bluetooth 5.0 to transmit the information as part of WiFi Aware for e.g. advertisement messages.
 
 ### Flights and Broadcast Remote ID Bandwidth
@@ -65,10 +65,16 @@ In this section, we develop projections of broadcast Remote ID messages, the AST
 | Maximum data message size (uncompressed) if all fields used e.g. Authentication System Message and Operator ID | __150 bytes__ |
 | Minimum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, total bytes emitted | 2040 * 50 = **102,000 bytes** |
 | Maximum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, total bytes emitted | 2040 * 150 =**306,000 bytes** |
+<br>
 
-| Reno, Nevada | Corpus Christi, Texas|
-| ------------- |-------------|
-| Flight density from above: 1255 flights / hour and a average flight time of 34 minutes we can assume that almost half the flights are in the air at any given time. This leads to the following bandwidth calculations: Assuming 630 flights * 102,000 bytes = 64260000 bytes or **64.26 MB / second** minimum in the airspace and a maximum of 630 flights * 306,000 bytes = 192780000 bytes or **192.78 MB / second** throughout the entire region.   | Similarly, for Corpus Christi the 1633 flights / hour and a average flight time of 34 minutes we can assume that almost half the flights are in the air at any given time. This leads to the following bandwidth calculations: Assuming 820 flights * 102,000 bytes = 83640000 bytes or **83.64 MB / second** minimum in the airspace and a maximum of 820 flights * 306,000 bytes = 250920000 bytes or **250.78 MB / second** throughout the entire region. |
+| Parameter | Reno, Nevada | Corpus Christi, Texas|
+|---| ------------- |-------------|
+| Average Flight time | 34 mins. | 30 mins. |
+|Flight Frequency | 1255 flights / hour | 1633 flights / hour |
+|Flights in the air | 25% - 50% - 75%  |25% - 50% - 75%  |
+| Data emission per second throughout the airspace (minimum) |  630 flights * 102,000 bytes = **64.26 MB / second** | 820 flights * 102,000 bytes = **83.64 MB / second** | 
+| Data emission per second throughout the airspace (maximum) | Maximum of 630 flights * 306,000 bytes = **192.78 MB / second** | Maximum of 820 flights * 306,000 bytes = **250.78 MB / second**  | 
+
 
 ### WiFi Aware range
 
