@@ -105,9 +105,11 @@ Assuming 50% of total flights will go over primary roads:
 | Number of flights | Bandwidth|
 | ------------- |-------------|
 |<img src="https://i.imgur.com/48yXeGa.jpg" width="350"> | <img src="https://i.imgur.com/11w6uyh.jpg" width="350"> |
-<br>
-| Parameter | |
-|---| ------------- |
+
+Assuming 50% of total flights will go over primary roads:
+
+| Parameter | Data |
+| ------------- | ------------- |
 | Flights to be tracked / min | <img src="https://i.imgur.com/POGoakn.jpg" width="350"> |
 | Flight speed | 35 km/ hour or 9.7 m /s  |
 | Distance / sensors  | 10 km / 200 sensors  |
