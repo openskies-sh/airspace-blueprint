@@ -111,10 +111,10 @@ Assuming 50% of total flights will go over primary roads:
 | Parameter | Data |
 | :-------------: | :-------------: |
 | Flights to be tracked / min | <img src="https://i.imgur.com/POGoakn.jpg" width="350"> |
-| Flight speed | 35 km/ hour or 9.7 m /s  |
+| Flight speed | 35 km/ hour or 9.7 m /s  or 5 seconds over every sensor |
 | Distance / sensors  | 10 km / 200 sensors  |
-| Sensor performance | 0% packet loss  -  100% flights tracked  <br>10% - <br> 20% - <br> 30% - <br>40% - <br>50% - <br>60% - <br>70% - <br>80% - <br>90% - <br>100 % packet loss - 0 % of flights tracked |
-
+| Sensor performace | <img src="https://i.imgur.com/Hee0iAL.jpg" width ="550" >
+| Messages lost vs Flights / hour | <img src="https://i.imgur.com/99iXafU.jpg" height="350"> |
 
 ### Network Remote ID projections
 
