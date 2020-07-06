@@ -89,8 +89,6 @@ Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For
 |Representative Map (sensors at ~50m distance, city boundaries and current roads) | <img src="https://i.imgur.com/8LiTYwn.jpg" width="350"> | <img src="https://i.imgur.com/y6ECQv3.jpg" width="350">|
 | Number of sensors to cover every 50 m | **104388** | **4711** |
 
-With almost 1255 flights / hour and almost half of them in the air at any time, at the most trafficed locations in the city (e.g. downtown) will have the most number of flights in the air. For the sake of simplicity we can assume that 3% of flights will be flying through downtown. This means that the receiver should be able to process **37 broadcast messages every second** in the Reno area.
-
 ### Broadcast Remote ID sensors for Major highway corridoors
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
