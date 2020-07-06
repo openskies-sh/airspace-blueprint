@@ -11,9 +11,10 @@
     - [Extrapolating real world scenarios from TCL demos](#extrapolating-real-world-scenarios-from-tcl-demos)
     - [Broadcast Remote ID projections for the airspace](#broadcast-remote-id-projections-for-the-airspace)
     - [Flights and Broadcast Remote ID Bandwidth](#flights-and-broadcast-remote-id-bandwidth)
-    - [WiFi Aware range](#wifi-aware-range)
+    - [Broadcast Remote ID Sensor Network](#broadcast-remote-id-sensor-network)
+    - [Broadcast Remote ID sensors for Major highway corridoors](#broadcast-remote-id-sensors-for-major-highway-corridoors)
+      - [Tracking error and packet loss](#tracking-error-and-packet-loss)
     - [Network Remote ID projections](#network-remote-id-projections)
-  - [Yearly flight projections](#yearly-flight-projections)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
 
@@ -41,7 +42,6 @@ The TCL tests are just a demonstration of core technical capability but can be a
 
 TCL demonstrators are not meant to be a reflection of a real world "fully active" use. In addition to Reno, there were tests in the  Corpus Christi area. We can extrapolate this using data about Reno by making some assumptions.
 
-
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 | -- | :-------------: |:-------------:|
 | Study Area | <img src="https://i.imgur.com/sHWaESL.jpg"> | <img src="https://i.imgur.com/xv5ZB3W.png"> |
@@ -53,6 +53,7 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 | Hourly flights (assuming 40 hours to fly / week) | 50,200 flights and 40 hours to fly <br><br> **1255 flights / hour**  |  65,310 flights and 40 hours to fly <br><br> **1633 flights / hour**|
 
 ### Broadcast Remote ID projections for the airspace
+
 In this section, we develop projections of broadcast Remote ID messages, the ASTM spec says that the UAS can use either Wifi or Bluetooth 4.0 or Bluetooth 5.0 to transmit the information as part of WiFi Aware for e.g. advertisement messages.
 
 ### Flights and Broadcast Remote ID Bandwidth
@@ -63,32 +64,59 @@ In this section, we develop projections of broadcast Remote ID messages, the AST
 | Number of broadcast Remote ID messages per flight  | __2040__ (1 per second)  |
 | Minimum Mandatory fields (Basic ID Message + Location / Vector Message) | __50 bytes__ |
 | Maximum data message size (uncompressed) if all fields used e.g. Authentication System Message and Operator ID | __150 bytes__ |
-| Minimum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, total bytes emitted | 2040 * 50 = **102,000 bytes** |
-| Maximum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, total bytes emitted | 2040 * 150 =**306,000 bytes** |
+| Minimum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, 50 bytes / message | 2040 * 50 = **102,000 bytes** |
+| Maximum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, 150 bytes / message | 2040 * 150 =**306,000 bytes** |
+
 <br>
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
 | Average Flight time | 34 mins. | 30 mins. |
 |Flight Frequency | 1255 flights / hour | 1633 flights / hour |
-|Flights in the air | 25% - 50% - 75%  |25% - 50% - 75%  |
-| Data emission per second throughout the airspace (minimum) |  630 flights * 102,000 bytes = **64.26 MB / second** | 820 flights * 102,000 bytes = **83.64 MB / second** | 
-| Data emission per second throughout the airspace (maximum) | Maximum of 630 flights * 306,000 bytes = **192.78 MB / second** | Maximum of 820 flights * 306,000 bytes = **250.78 MB / second**  | 
+|Flights in the air | 25% capacity - 313 flights / hour <br>50% capacity - 627 flights / hour <br>75% capacity - 942 flights / hour |25% capacity -  408 flights / hour <br>50% capacity - 816 flights / hour <br>75% capacity-  1224 flights / hour |
+
+Using this we develop a flight density and bandwidth envelope as shown below throughout the entire airspace <br> 
+
+<img src="https://i.imgur.com/TUXA4bO.jpg" width="400"><br> <img src="https://i.imgur.com/lSfiUm3.jpg" width="400">
+
+### Broadcast Remote ID Sensor Network
 
 
-### WiFi Aware range
+Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For the sake of simplicity we assume 40 meters. A drone flying at 35 km / hour (9.7 m/s) will cover 50 meters in rougly 5.1 seconds. If we assume a mesh of WiFi receivers at 50 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire study area.
 
-Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For the sake of simplicity we assume 40 meters. A drone flying at 35 km / hour (9.7 m/s) will cover 40 meters in rougly 4 seconds.
+| Parameter | Reno, Nevada | Corpus Christi, Texas|
+|---| ------------- |-------------|
+|Representative Map (sensors at ~50m distance, city boundaries and current roads) | <img src="https://i.imgur.com/8LiTYwn.jpg" width="350"> | <img src="https://i.imgur.com/y6ECQv3.jpg" width="350">|
+| Number of sensors to cover every 50 m | **104388** | **4711** |
 
 With almost 1255 flights / hour and almost half of them in the air at any time, at the most trafficed locations in the city (e.g. downtown) will have the most number of flights in the air. For the sake of simplicity we can assume that 3% of flights will be flying through downtown. This means that the receiver should be able to process **37 broadcast messages every second** in the Reno area.
 
+### Broadcast Remote ID sensors for Major highway corridoors
+
+| Parameter | Reno, Nevada | Corpus Christi, Texas|
+|---| ------------- |-------------|
+| Total Length of major highways | 81.78 kms | 52.27 kms |
+| Theoritical number of sensors required (every 50 m) | **1635** | **1045** |
+| Sensor locations | <img src="https://i.imgur.com/1wUd2sq.jpg" width="350"> | <img src="https://i.imgur.com/bVKMTuF.jpgs" width="350"> |
+
+#### Tracking error and packet loss
+Assuming 50% of total flights will go over primary roads:
+
+| Number of flights | Bandwidth|
+| ------------- |-------------|
+|<img src="https://i.imgur.com/48yXeGa.jpg" width="350"> | <img src="https://i.imgur.com/11w6uyh.jpg" width="350"> |
+
+| Parameter | |
+|---| ------------- |-------------|
+| Flights to be tracked / min | <img src="https://i.imgur.com/POGoakn.jpg" width="350"> |
+| Flight speed | 35 km/ hour or 9.7 m /s  |
+| Distance / sensors  | 10 km / 200 sensors  |
+| Sensor performance | 0% packet loss  -  100% flights tracked  <br>10% - <br> 20% - <br> 30% - <br>40% - <br>50% - <br>60% - <br>70% - <br>80% - <br>90% - <br>100 % packet loss - 0 % of flights tracked |
+
+
 ### Network Remote ID projections
+
 TBC
-
-## Yearly flight projections 
-
-Assuming a 5% increase in demand in urgent deliveries, the yearly increase in flights in the region is below <br><br> <img src="https://i.imgur.com/itZqIjO.png" width="400"> 
-
 
 ## Acknowledgements
 
@@ -99,5 +127,6 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
-| 0.2 | 3-July-2020 | Dr. Hrishikesh Ballal | Fixed formatting   |
+| 0.6 | 6-July-2020 | Dr. Hrishikesh Ballal | Added QGIS / OSM data and maps |
+| 0.2 | 3-July-2020 | Dr. Hrishikesh Ballal | Fixed formatting |
 | 0.1 | 2-July-2020 | Dr. Hrishikesh Ballal | Removed UTM specific details and renamed   |
