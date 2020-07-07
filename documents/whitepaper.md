@@ -12,7 +12,7 @@
     - [Broadcast Remote ID projections for the airspace](#broadcast-remote-id-projections-for-the-airspace)
     - [Flights and Broadcast Remote ID Bandwidth](#flights-and-broadcast-remote-id-bandwidth)
     - [Broadcast Remote ID Sensor Network](#broadcast-remote-id-sensor-network)
-    - [Broadcast Remote ID sensors for Major highway corridoors](#broadcast-remote-id-sensors-for-major-highway-corridoors)
+    - [Broadcast Remote ID sensors for major highway corridoors](#broadcast-remote-id-sensors-for-major-highway-corridoors)
       - [Tracking error and packet loss](#tracking-error-and-packet-loss)
     - [Network Remote ID projections](#network-remote-id-projections)
   - [Acknowledgements](#acknowledgements)
@@ -54,7 +54,7 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 
 ### Broadcast Remote ID projections for the airspace
 
-In this section, we develop projections of broadcast Remote ID messages, the ASTM spec says that the UAS can use either Wifi or Bluetooth 4.0 or Bluetooth 5.0 to transmit the information as part of WiFi Aware for e.g. advertisement messages.
+In this section, we develop projections of broadcast Remote ID messages in the airspace, the ASTM spec says that the UAS can use either Wifi or Bluetooth 4.0 or Bluetooth 5.0 to "broadcast" Remote ID information as part of WiFi Aware for e.g. advertisement messages.
 
 ### Flights and Broadcast Remote ID Bandwidth
 
@@ -64,8 +64,8 @@ In this section, we develop projections of broadcast Remote ID messages, the AST
 | Number of broadcast Remote ID messages per flight  | __2040__ (1 per second)  |
 | Minimum Mandatory fields (Basic ID Message + Location / Vector Message) | __50 bytes__ |
 | Maximum data message size (uncompressed) if all fields used e.g. Authentication System Message and Operator ID | __150 bytes__ |
-| Minimum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, 50 bytes / message | 2040 * 50 = **102,000 bytes** |
-| Maximum messages per return flight (35 mins @ 1 message/ sec = 2040 messages, 150 bytes / message | 2040 * 150 =**306,000 bytes** |
+| Minimum bytes per return flight (35 mins @ 1 message/ sec = 2040 messages, 50 bytes / message | 2040 * 50 = **102,000 bytes** |
+| Maximum bytes per return flight (35 mins @ 1 message/ sec = 2040 messages, 150 bytes / message | 2040 * 150 =**306,000 bytes** |
 
 <br>
 
@@ -81,15 +81,14 @@ Using this we develop a flight density and bandwidth envelope as shown below thr
 
 ### Broadcast Remote ID Sensor Network
 
-
-Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For the sake of simplicity we assume 40 meters. A drone flying at 35 km / hour (9.7 m/s) will cover 50 meters in rougly 5.1 seconds. If we assume a mesh of WiFi receivers at 50 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire study area.
+Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For the sake of simplicity we assume 50 meters. A drone flying at 35 km / hour (9.7 m/s) will cover 50 meters in rougly 5.1 seconds. If we assume a mesh of WiFi receivers at 50 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire area.
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
 |Representative Map (sensors at ~50m distance, city boundaries and current roads) | <img src="https://i.imgur.com/8LiTYwn.jpg" width="350"> | <img src="https://i.imgur.com/y6ECQv3.jpg" width="350">|
 | Number of sensors to cover every 50 m | **104388** | **4711** |
 
-### Broadcast Remote ID sensors for Major highway corridoors
+### Broadcast Remote ID sensors for major highway corridoors
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
@@ -98,21 +97,24 @@ Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For
 | Sensor locations | <img src="https://i.imgur.com/1wUd2sq.jpg" width="350"> | <img src="https://i.imgur.com/bVKMTuF.jpgs" width="350"> |
 
 #### Tracking error and packet loss
+
 Assuming 50% of total flights will go over primary roads:
 
 | Number of flights | Bandwidth|
 | ------------- |-------------|
 |<img src="https://i.imgur.com/48yXeGa.jpg" width="350"> | <img src="https://i.imgur.com/11w6uyh.jpg" width="350"> |
 
-Assuming 50% of total flights will go over primary roads:
+For the flight density and bandwidth we can estimate the flights to be tracked and sensor performance as below.
 
 | Parameter | Data |
 | :-------------: | :-------------: |
 | Flights to be tracked / min | <img src="https://i.imgur.com/POGoakn.jpg" width="350"> |
-| Flight speed | 35 km/ hour or 9.7 m /s  or 5 seconds over every sensor |
-| Distance / sensors  | 10 km / 200 sensors  |
+| Flight speed | 35 km / hour or 9.7 m / s  or 5 seconds over every sensor |
+| Flight Distance / Total sensors  | 10 km / 200 sensors |
 | Sensor performace | <img src="https://i.imgur.com/Hee0iAL.jpg" width ="550" >
-| Messages lost vs Flights / hour | <img src="https://i.imgur.com/99iXafU.jpg" height="350"> |
+| Messages lost vs Flights / hour | <img src="https://i.imgur.com/XgkfGOT.jpg" height="350"> |
+
+
 
 ### Network Remote ID projections
 
