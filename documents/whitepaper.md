@@ -49,7 +49,7 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 | Urgent Delivery Flights in downtown| Assume that the urgent package delivery market with the following assumptions: 5% of the people are interested in urgent delivery (22 people in the area, they order urgent delivery twice a week (22 x 2 packages x 2 days) <br><br> **88 flights / week** | Assume that the urgent package delivery market with the following assumptions: 5% of the people are interested in urgent delivery (18 people in the area), they order urgent delivery twice a week (18 x 2 packages x 2 days) <br><br> **72 flights / week** |
 | Metro Area Map | <img src="https://i.imgur.com/i8Cpz0C.png" height="400"> | <img src="https://i.imgur.com/vU9Ex7J.jpg" height="400"> |
 | Metro Area size | Reno City has a population of 250,998 and a area of __274.2__ km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)). | Corpus Christi Metro Area has a population of 326,554 and a area of __1,304__ km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas))|
-| Urgent delivery flights in Metro Area | For the entire Reno, NV area, we get the following: 5% of the people are interested in urgent delivery (12,550 people in the city), they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth). This means that every week there will be potentially <br><br>**50,200 flights per week**  | For Corpus Christi, TX area, we get the following: 5% of the people are interested in urgent delivery (16328 people in the city), they order urgent delivery twice a week (16328 x 2 packages x 2 days) = 65310 flights (back and forth). This means that every week there will be potentially <br><br>**65,310 flights per week**  |
+| Urgent delivery flights in Metro Area | Assumptions: <br> - 5% of the people are interested in urgent delivery (12,550 people in AOI) <br> -  Urgent delivery twice a week (12550 x 2 packages x 2 days)  <br><br>**50,200 flights per week**  | Assumptions: <br> - 5% of the people are interested in urgent delivery (16328 people in AOI) <br> - Urgent delivery twice a week (16328 x 2 packages x 2 days) <br><br>**65,310 flights per week**  |
 | Hourly flights (assuming 40 hours to fly / week) | 50,200 flights and 40 hours to fly <br><br> **1255 flights / hour**  |  65,310 flights and 40 hours to fly <br><br> **1633 flights / hour**|
 
 ### Broadcast Remote ID projections for the airspace
@@ -85,8 +85,8 @@ Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
-|Representative Map (sensors at ~50m distance, city boundaries and current roads) | <img src="https://i.imgur.com/8LiTYwn.jpg" width="350"> | <img src="https://i.imgur.com/y6ECQv3.jpg" width="350">|
-| Number of sensors to cover every 50 m | **104388** | **4711** |
+|Representative Map (sensors at ~50m distance, city boundaries and current roads) | <img src="https://i.imgur.com/8LiTYwn.jpg" width="350"> | <img src="https://i.imgur.com/4sRAIOP.jpg" width="350">|
+| Number of sensors to cover every 50 m | **104388** | **286329** |
 
 ### Broadcast Remote ID sensors for major highway corridoors
 
@@ -94,7 +94,9 @@ Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For
 |---| ------------- |-------------|
 | Total Length of major highways | 81.78 kms | 52.27 kms |
 | Theoritical number of sensors required (every 50 m) | **1635** | **1045** |
-| Sensor locations | <img src="https://i.imgur.com/1wUd2sq.jpg" width="350"> | <img src="https://i.imgur.com/bVKMTuF.jpgs" width="350"> |
+| Sensor locations | <img src="https://i.imgur.com/1wUd2sq.jpg" width="350"> | <img src="https://i.imgur.com/yJZbQwc.jpg" width="350"> |
+| Not all sensors can be installed   | <img src="https://i.imgur.com/1CWKUw2.jpg" width="350" > | <img src="https://i.imgur.com/s8Q61MJ.jpg" width="350">|
+| National Land Cover Database ([legend](https://www.mrlc.gov/data/legends/national-land-cover-database-2016-nlcd2016-legend)) | <img src="https://i.imgur.com/OTHnMse.jpg" width="350">| <img src="https://i.imgur.com/fM7DiFt.jpg" width="350">|
 
 #### Tracking error and packet loss
 
@@ -102,7 +104,7 @@ Assuming 50% of total flights will go over primary roads:
 
 | Number of flights | Bandwidth|
 | ------------- |-------------|
-|<img src="https://i.imgur.com/48yXeGa.jpg" width="350"> | <img src="https://i.imgur.com/11w6uyh.jpg" width="350"> |
+|<img src="https://i.imgur.com/48yXeGa.jpg" width="350"> | <img src="https://i.imgur.com/tbcm6Qu.jpg" width="350"> |
 
 For the flight density and bandwidth we can estimate the flights to be tracked and sensor performance as below.
 
@@ -129,6 +131,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.7 | 8-July-2020 | Dr. Hrishikesh Ballal | NLCD screenshots and updated charts  |
 | 0.6 | 6-July-2020 | Dr. Hrishikesh Ballal | Added QGIS / OSM data and maps |
 | 0.2 | 3-July-2020 | Dr. Hrishikesh Ballal | Fixed formatting |
 | 0.1 | 2-July-2020 | Dr. Hrishikesh Ballal | Removed UTM specific details and renamed   |
