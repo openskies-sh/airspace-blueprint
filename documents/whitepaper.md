@@ -12,8 +12,8 @@
     - [Broadcast Remote ID projections for the airspace](#broadcast-remote-id-projections-for-the-airspace)
     - [Flights and Broadcast Remote ID Bandwidth](#flights-and-broadcast-remote-id-bandwidth)
     - [Broadcast Remote ID Sensor Network](#broadcast-remote-id-sensor-network)
-    - [Broadcast Remote ID sensors for major highway corridoors](#broadcast-remote-id-sensors-for-major-highway-corridoors)
-      - [Tracking error and packet loss](#tracking-error-and-packet-loss)
+    - [Broadcast Remote ID sensors for landuse types](#broadcast-remote-id-sensors-for-landuse-types)
+      - [Tracking errors and packet loss](#tracking-errors-and-packet-loss)
     - [Network Remote ID projections](#network-remote-id-projections)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
@@ -81,40 +81,45 @@ Using this we develop a flight density and bandwidth envelope as shown below thr
 
 ### Broadcast Remote ID Sensor Network
 
-Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For the sake of simplicity we assume 50 meters. A drone flying at 35 km / hour (9.7 m/s) will cover 50 meters in rougly 5.1 seconds. If we assume a mesh of WiFi receivers at 50 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire area.
+Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters indoors and 300 ft or 91 meters outdoors. For the sake of simplicity we assume __100 meters__. A drone flying at 35 km / hour (9.7 m/s) will cover 100 meters in rougly 10.2 seconds. If we assume a mesh of WiFi receivers at 50 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire area.
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
-|Representative Map (sensors at ~50m distance, city boundaries and current roads) | <img src="https://i.imgur.com/8LiTYwn.jpg" width="350"> | <img src="https://i.imgur.com/4sRAIOP.jpg" width="350">|
-| Number of sensors to cover every 50 m | **104388** | **286329** |
+|Representative Map (sensors at ~100m distance, city boundaries and current roads) | <img src="https://i.imgur.com/k6FnWfA.png" width="350"> | <img src="https://i.imgur.com/7UzOK7o.png" width="350">|
+| Number of sensors to cover every 100 m | **30299** | **121578** |
 
-### Broadcast Remote ID sensors for major highway corridoors
+### Broadcast Remote ID sensors for landuse types
+
+In a urban setting we use the [MLRC data](https://www.mrlc.gov/) and filter for landuse type 21, 22, 23 and 24  ([legend](https://www.mrlc.gov/data/legends/national-land-cover-database-2016-nlcd2016-legend) clipped below)
+
+<img src="https://i.imgur.com/gZHr1e6.jpg" height="100">
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
-| Total Length of major highways | 81.78 kms | 52.27 kms |
-| Theoritical number of sensors required (every 50 m) | **1635** | **1045** |
-| Sensor locations | <img src="https://i.imgur.com/1wUd2sq.jpg" width="350"> | <img src="https://i.imgur.com/yJZbQwc.jpg" width="350"> |
-| Not all sensors can be installed   | <img src="https://i.imgur.com/1CWKUw2.jpg" width="350" > | <img src="https://i.imgur.com/s8Q61MJ.jpg" width="350">|
-| National Land Cover Database ([legend](https://www.mrlc.gov/data/legends/national-land-cover-database-2016-nlcd2016-legend)) | <img src="https://i.imgur.com/OTHnMse.jpg" width="350">| <img src="https://i.imgur.com/fM7DiFt.jpg" width="350">|
+| Number of sensors required every 100 m by landuse | <img src="https://i.imgur.com/Q6W57Dp.png" width="350"> | <img src="https://i.imgur.com/HJBrG4H.png" width="350"> |
+| Sensor distribution for full coverage | <img src="https://i.imgur.com/FQPjWAj.png" width="350"> | <img src="https://i.imgur.com/vFFMsWy.png" width="350"> |
 
-#### Tracking error and packet loss
+| | Comparing two cities |
+|---| ------------- |
+||<img src="https://i.imgur.com/s74DLUr.jpg" width="350">|
 
-Assuming 50% of total flights will go over primary roads:
+#### Tracking errors and packet loss
+
+Assuming 90% of total flights will go over developed areas:
 
 | Number of flights | Bandwidth|
 | ------------- |-------------|
-|<img src="https://i.imgur.com/48yXeGa.jpg" width="350"> | <img src="https://i.imgur.com/tbcm6Qu.jpg" width="350"> |
+|<img src="https://i.imgur.com/UvnQtKS.png" width="350"> | <img src="https://i.imgur.com/vPpwRmE.png" width="350"> |
 
 For the flight density and bandwidth we can estimate the flights to be tracked and sensor performance as below.
 
 | Parameter | Data |
 | :-------------: | :-------------: |
-| Flights to be tracked / min | <img src="https://i.imgur.com/POGoakn.jpg" width="350"> |
-| Flight speed | 35 km / hour or 9.7 m / s  or 5 seconds over every sensor |
-| Flight Distance / Total sensors  | 10 km / 200 sensors |
-| Sensor performace | <img src="https://i.imgur.com/Hee0iAL.jpg" width ="550" >
-| Messages lost vs Flights / hour | <img src="https://i.imgur.com/XgkfGOT.jpg" height="350"> |
+| Flights to be tracked / min | <img src="https://i.imgur.com/8NTZ2tX.png" width="350"> |
+| Flight speed | 35 km / hour or 9.7 m / s  or 10 seconds over every sensor |
+| Flight Distance / Total sensors  | 10 km / 100 sensors |
+| Sensor performace | <img src="https://i.imgur.com/3yeyN12.png" width ="550" >
+| Messages lost vs Flights / hour | <img src="https://i.imgur.com/6AqR1AN.png" height="350"> |
 
 
 
@@ -131,6 +136,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.8 | 21-July-2020 | Dr. Hrishikesh Ballal | Added Urban developed landuse from NLCD and updated calculations  |
 | 0.7 | 8-July-2020 | Dr. Hrishikesh Ballal | NLCD screenshots and updated charts  |
 | 0.6 | 6-July-2020 | Dr. Hrishikesh Ballal | Added QGIS / OSM data and maps |
 | 0.2 | 3-July-2020 | Dr. Hrishikesh Ballal | Fixed formatting |
