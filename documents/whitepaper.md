@@ -13,6 +13,7 @@
     - [Flights and Broadcast Remote ID Bandwidth](#flights-and-broadcast-remote-id-bandwidth)
     - [Broadcast Remote ID Sensor Network](#broadcast-remote-id-sensor-network)
     - [Broadcast Remote ID sensors for landuse types](#broadcast-remote-id-sensors-for-landuse-types)
+      - [Comparing two cities](#comparing-two-cities)
       - [Tracking errors and packet loss](#tracking-errors-and-packet-loss)
     - [Network Remote ID projections](#network-remote-id-projections)
   - [Acknowledgements](#acknowledgements)
@@ -81,12 +82,12 @@ Using this we develop a flight density and bandwidth envelope as shown below thr
 
 ### Broadcast Remote ID Sensor Network
 
-Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters indoors and 300 ft or 91 meters outdoors. For the sake of simplicity we assume __100 meters__. A drone flying at 35 km / hour (9.7 m/s) will cover 100 meters in rougly 10.2 seconds. If we assume a mesh of WiFi receivers at 50 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire area.
+Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters indoors and 300 ft or 91 meters outdoors. For the sake of simplicity we assume __100 meters__. A drone flying at 35 km / hour (9.7 m/s) will cover 100 meters in rougly 10.2 seconds. If we assume a mesh of WiFi receivers at 100 meters (the range of WiFi aware signal), we can estimate the number of sensors necessary to cover the entire area.
 
 | Parameter | Reno, Nevada | Corpus Christi, Texas|
 |---| ------------- |-------------|
 |Representative Map (sensors at ~100m distance, city boundaries and current roads) | <img src="https://i.imgur.com/k6FnWfA.png" width="350"> | <img src="https://i.imgur.com/7UzOK7o.png" width="350">|
-| Number of sensors to cover every 100 m | **30299** | **121578** |
+| Number of sensors to cover every 100 m (all landuse)| **30299** | **121578** |
 
 ### Broadcast Remote ID sensors for landuse types
 
@@ -99,9 +100,9 @@ In a urban setting we use the [MLRC data](https://www.mrlc.gov/) and filter for 
 | Number of sensors required every 100 m by landuse | <img src="https://i.imgur.com/Q6W57Dp.png" width="350"> | <img src="https://i.imgur.com/HJBrG4H.png" width="350"> |
 | Sensor distribution for full coverage | <img src="https://i.imgur.com/FQPjWAj.png" width="350"> | <img src="https://i.imgur.com/vFFMsWy.png" width="350"> |
 
-| | Comparing two cities |
-|---| ------------- |
-||<img src="https://i.imgur.com/s74DLUr.jpg" width="350">|
+#### Comparing two cities
+
+<img src="https://i.imgur.com/s74DLUr.jpg" width="550">
 
 #### Tracking errors and packet loss
 
