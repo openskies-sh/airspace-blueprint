@@ -1,0 +1,11 @@
+#############################################################
+# Paste test factors here.
+# Check the documents for more details.
+# https://github.com/Microsoft/pict/blob/master/doc/pict.md
+# Use this file in https://pairwise.yuuniworks.com/
+#############################################################
+
+Reception Device:          A, B, C
+Broadcast Rate:         A, B, C, D
+Operating Environment: A, B, C
+
