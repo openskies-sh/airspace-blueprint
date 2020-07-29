@@ -5,7 +5,7 @@
 # Use this file in https://pairwise.yuuniworks.com/
 #############################################################
 
-Reception Device:          A, B, C
+Reception Device:          A, B
 Broadcast Rate:         A, B, C, D
 Operating Environment: A, B, C
 
