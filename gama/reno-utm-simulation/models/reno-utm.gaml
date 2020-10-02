@@ -10,16 +10,14 @@ model renoutm
 
 /* Insert your model definition here */
 
-
-
 global {
     file shape_file_buildings <- file("../includes/downtown-buildings.shp");
     file shape_file_roads <- file("../includes/downtown-roads.shp");
     file shape_file_bounds <- file("../includes/downtown-bounds.shp");
     geometry shape <- envelope(shape_file_bounds);
     float step <- 1 #mn;
-    date starting_date <- date("2019-09-01-00-00-00");
-    int nb_people <- 100;
+    date starting_date <- date("2020-09-01-00-00-00");
+    int nb_drones <- 100;
     int min_work_start <- 6;
     int max_work_start <- 8;
     int min_work_end <- 16; 
@@ -44,7 +42,7 @@ global {
         
     list<building> residential_buildings <- building where (each.type="residential");
     list<building> industrial_buildings <- building  where (each.type="commercial") ;
-    create drones number: nb_people {
+    create drones number: nb_drones {
         speed <- rnd(min_speed, max_speed);
         start_work <- rnd (min_work_start, max_work_start);
         end_work <- rnd(min_work_end, max_work_end);
@@ -109,19 +107,29 @@ experiment air_traffic type: gui {
     parameter "Shapefile for the buildings:" var: shape_file_buildings category: "GIS" ;
     parameter "Shapefile for the roads:" var: shape_file_roads category: "GIS" ;
     parameter "Shapefile for the bounds:" var: shape_file_bounds category: "GIS" ;  
-    parameter "Number of people agents" var: nb_people category: "People" ;
-    parameter "Earliest hour to start work" var: min_work_start category: "People" min: 2 max: 8;
-    parameter "Latest hour to start work" var: max_work_start category: "People" min: 8 max: 12;
-    parameter "Earliest hour to end work" var: min_work_end category: "People" min: 12 max: 16;
-    parameter "Latest hour to end work" var: max_work_end category: "People" min: 16 max: 23;
-    parameter "minimal speed" var: min_speed category: "People" min: 20 #km/#h ;
-    parameter "maximal speed" var: max_speed category: "People" max: 20 #km/#h;
+    parameter "Number of drone agents" var: nb_drones category: "Drones" ;
+    parameter "Earliest hour to start work" var: min_work_start category: "Drones" min: 2 max: 8;
+    parameter "Latest hour to start work" var: max_work_start category: "Drones" min: 8 max: 12;
+    parameter "Earliest hour to end work" var: min_work_end category: "Drones" min: 12 max: 16;
+    parameter "Latest hour to end work" var: max_work_end category: "Drones" min: 16 max: 23;
+    parameter "minimal speed" var: min_speed category: "Drones" min: 20 #km/#h ;
+    parameter "maximal speed" var: max_speed category: "Drones" max: 20 #km/#h;
     
     output {
     display city_display type: opengl {
         species building aspect: base ;
         species road aspect: base ;
         species drones aspect: base ;
+    }
+     display chart_display refresh: every(10#cycles) { 
+		//        chart "Road Status" type: series size: {1, 0.5} position: {0, 0} {
+		//        data "Mean road destruction" value: mean (road collect each.destruction_coeff) style: line color: #green ;
+		//        data "Max road destruction" value: road max_of each.destruction_coeff style: line color: #red ;
+		//        }
+        chart "People Objectif" type: pie style: exploded size: {1, 0.5} position: {0, 0.5}{
+        data "Working" value: drones count (each.objective="working") color: #magenta ;
+        data "Resting" value: drones count (each.objective="resting") color: #blue ;
+        }
     }
     }
 }
