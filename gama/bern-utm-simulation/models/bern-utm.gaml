@@ -17,10 +17,6 @@ global {
     // float step <- 1 #mn; // override the default step of 1s (https://gama-platform.github.io/wiki/ManipulateDates)
     date starting_date <- #now; // date("2020-09-01-00-00-00");
     
-    int min_work_start <- 6;
-    int max_work_start <- 8;
-    int min_work_end <- 16; 
-    int max_work_end <- 20; 
     int nb_drones <- 1;
     float min_speed <- 10.0 #km / #h;
     float max_speed <- 25.0 #km / #h; 
@@ -76,22 +72,29 @@ species drones skills:[moving] {
     
 	string objective ; 
     point the_target <- nil ;
+    float leaving_proba <- 0.05; 
+
+    
+    
+	reflex go_back when: (target = nil) and (flip(leaving_proba)) {
+		the_target <- any_location_in(one_of(delivery_start));
+	}
+
+    // reflex time_to_deliver when: objective = "resting"{
+    // objective <- "working" ;
+    // the_target <- any_location_in (one_of(delivery_end));
+    // }
         
-          
-    reflex time_to_deliver when: objective = "resting"{
-    objective <- "working" ;
-    the_target <- any_location_in (one_of(delivery_start));
-    }
-        
-    reflex time_to_go_home when: objective = "working"{
-    objective <- "resting" ;
-    the_target <- any_location_in (one_of(delivery_end)); 
-    } 
+    // reflex time_to_go_home when: objective = "working"{
+    // objective <- "resting" ;
+    // the_target <- any_location_in (one_of(delivery_start)); 
+    // } 
      
     reflex move when: the_target != nil {
     do goto target: the_target on: road_graph ; 
     if the_target = location {    	
     	 the_target <- nil ;        
+         // staying_counter <- 0;
     }
     }
     
